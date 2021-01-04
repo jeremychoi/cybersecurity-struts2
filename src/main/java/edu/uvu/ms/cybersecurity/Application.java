@@ -15,4 +15,19 @@ public class Application {
     public static void main(final String[] args) {
         SpringApplication.run(Application.class, args);
     }
+
+    private final User user;
+
+    public UserCause(User user, String message) {
+        super(hudson.slaves.Messages._SlaveComputer_DisconnectedBy(
+                    user!=null ? user.getId() : Jenkins.ANONYMOUS.getName(), 
+                    message != null ? " : " + message : ""
+            ));
+        this.user = user;
+    }
+
+
+    public User getUser() {
+        return user;
+    }
 }
